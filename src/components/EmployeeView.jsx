@@ -193,7 +193,7 @@ function EmployeeView() {
                                         <td className='px-4 py-2 bg-slate-100 text-center'>{employee.last_name}</td>
                                         <td className='px-4 py-2 bg-slate-100 text-center'>{employee.email}</td>
                                         <td className='px-4 py-2 bg-slate-100 text-center'>{new Date(employee.dob).toLocaleDateString()}</td>
-                                        <td className='px-4 py-2 bg-slate-100 text-center'>{employee.salary.toFixed(2)}</td>
+                                        <td className='px-4 py-2 bg-slate-100 text-center'>{employee.salary?.toFixed(2)}</td>
                                         <td className='px-4 py-2 bg-slate-100 text-center'>
                                             <button onClick={() => handleEditClick(employee)} className='bg-blue-500 text-white px-3 py-1.5 rounded-md'>Edit</button>
                                             <button onClick={() => deleteEmployee(employee.emp_id)} className='bg-red-500 text-white px-3 py-1.5 rounded-md ml-2'>Delete</button>

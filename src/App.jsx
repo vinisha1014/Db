@@ -12,11 +12,25 @@ import SupplierView from "./components/SupplierView";
 import Inventory from "./components/Inventory";
 import InventoryUpload from "./components/InventoryUpload";
 import InventoryView from "./components/InventoryView";
+import Department from "./components/Department";
+import DepartmentView from "./components/DepartmentView";
+import Order from "./components/Order";
+import OrderUpload from "./components/OrderUpload";
+import OrderView from "./components/OrderView";
+import Customer from "./components/Customer";
+import CustomerUpload from "./components/CustomerUpload";
+import CustomerView from "./components/CustomerView";
+import PayrollUpload from "./components/PayrollUpload";
+import PayrollView from "./components/PayrollView";
+import Payroll from "./components/Payroll";
 
 export const employeeContext = createContext();
 export const departmentContext = createContext();
 export const supplierContext = createContext();
 export const inventoryContext = createContext();
+export const orderContext = createContext();
+export const customerContext = createContext();
+export const payrollContext = createContext();
 
 function App() {
     const [employees, setEmployees] = useState([]);
@@ -24,8 +38,15 @@ function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(true);
     const [suppliers,setSuppliers] = useState([]);
     const [inventories, setInventories] = useState([]);
+    const [orders, setOrders] = useState([]);
+    const [customers, setCustomers] = useState([]);
+    const [payrolls, setPayrolls] = useState([]);
+
 
     return (
+        <payrollContext.Provider value={{ payrolls, setPayrolls }}>
+        <customerContext.Provider value={{ customers, setCustomers }}>
+        <orderContext.Provider value={{ orders, setOrders }}>
         <inventoryContext.Provider value={{ inventories, setInventories }}>
         <supplierContext.Provider value={{ suppliers, setSuppliers }}>
         <employeeContext.Provider value={{ employees, setEmployees }}>
@@ -51,7 +72,33 @@ function App() {
                                 <Route path="view" element={<InventoryView />} />
                             </Route>
 
-                            <Route path="department" element={<DepartmentUpload />} />
+                            <Route path="department" element={<Department />} >
+                                
+                                <Route index element={<DepartmentUpload />} />
+                                <Route path="upload" element={<DepartmentUpload />} />
+                                <Route path="view" element={<DepartmentView />} />
+
+                            </Route>
+                            {/* order routes */}
+                            <Route path="order" element={<Order />}>
+                                <Route index element={<OrderUpload />} />
+                                <Route path="upload" element={<OrderUpload />} />
+                                <Route path="view" element={<OrderView />} />
+                                </Route>
+                            {/* customer routes */}
+                            <Route path="customer" element={<Customer />}>
+                                <Route index element={<CustomerUpload />} />
+                                <Route path="upload" element={<CustomerUpload />} />
+                                <Route path="view" element={<CustomerView />} />
+
+                            </Route>
+                            {/* payroll routes */}
+                            <Route path="payroll" element={<Payroll />}>
+                                <Route index element={<PayrollUpload />} />
+                                <Route path="upload" element={<PayrollUpload />} />
+                                <Route path="view" element={<PayrollView />} />
+                            </Route>
+
                         </Route>
                     </Routes>
                 </BrowserRouter>
@@ -59,6 +106,9 @@ function App() {
         </employeeContext.Provider>
         </supplierContext.Provider>
         </inventoryContext.Provider>
+        </orderContext.Provider>
+        </customerContext.Provider>
+        </payrollContext.Provider>
     );
 }
 

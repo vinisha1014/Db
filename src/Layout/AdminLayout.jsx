@@ -15,7 +15,7 @@ function AdminLayout() {
             { path: "/inventory", label: "Inventory" },
             { path: "/customer", label: "Customer" },
             {path: "/supplier", label: "Supplier"},
-            { path: "/orders", label: "Orders" }
+            { path: "/order", label: "Orders" }
           ].map((item) => (
             <li key={item.path} className="w-full">
               <NavLink

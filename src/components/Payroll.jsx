@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
 
-function Department() {
+function Payroll() {
   return (
     <div>
       {/* Tab */}
@@ -38,4 +38,4 @@ function Department() {
   );
 }
 
-export default Department;
+export default Payroll;
