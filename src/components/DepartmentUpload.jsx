@@ -6,22 +6,26 @@ function DepartmentUpload() {
     const { departments, setDepartments } = useContext(departmentContext);
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
-    const handleCustomSubmit = (data) => {
-        reset();
-        const currentDepId = departments.length > 0
-            ? Math.max(...departments.map(dep => dep.id)) + 1
-            : 1;
+    const handleCustomSubmit = async (data) => {
+        try {
+            const response = await fetch('http://localhost:5000/api/departments', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
 
+            if (!response.ok) {
+                throw new Error('Failed to add department');
+            }
 
-        const newDep = {
-            id: currentDepId,
-            name: data.name,
-            address: data.address,
-            age: data.age
-        };
-
-        setDepartments([...departments, newDep]);
-        console.log(data);
+            const newDepartment = await response.json();
+            setDepartments((prevDepartments) => [...prevDepartments, newDepartment]);
+            reset();
+        } catch (error) {
+            console.error("Error:", error.message);
+        }
     };
 
     return (
@@ -29,38 +33,35 @@ function DepartmentUpload() {
             <h1 className='text-2xl font-bold'>Department Upload</h1>
             <form className='mt-6' onSubmit={handleSubmit(handleCustomSubmit)}>
                 <div className='flex flex-col gap-2'>
-                    <label htmlFor="name">Name</label>
+                    <label htmlFor="dep_name">Department Name</label>
                     <input 
                         type="text" 
                         className='border-2 border-gray-600 rounded-md p-2' 
                         placeholder='Enter Department Name' 
-                        {...register("name", { 
-                            required: { value: true, message: "Name is required" } 
+                        {...register("dep_name", { 
+                            required: { value: true, message: "Department name is required" } 
                         })} 
                     />
-                    <p className='text-red-500'>{errors.name?.message}</p>
+                    <p className='text-red-500'>{errors.dep_name?.message}</p>
 
-                    <label htmlFor="address">Address</label>
+                    <label htmlFor="dep_email">Department Email</label>
                     <input 
-                        type="text" 
+                        type="email" 
                         className='border-2 border-gray-600 rounded-md p-2' 
-                        placeholder='Enter Department Address' 
-                        {...register("address", { 
-                            required: { value: true, message: "Address is required" } 
+                        placeholder='Enter Department Email' 
+                        {...register("dep_email", { 
+                            required: { value: true, message: "Email is required" } 
                         })} 
                     />
-                    <p className='text-red-500'>{errors.address?.message}</p>
+                    <p className='text-red-500'>{errors.dep_email?.message}</p>
 
-                    <label htmlFor="age">Age</label>
+                    <label htmlFor="emp_id">Employee ID</label>
                     <input 
                         type="number" 
                         className='border-2 border-gray-600 rounded-md p-2' 
-                        placeholder='Enter Department Age' 
-                        {...register("age", { 
-                            required: { value: true, message: "Age is required" } 
-                        })} 
+                        placeholder='Enter Employee ID (optional)' 
+                        {...register("emp_id")} 
                     />
-                    <p className='text-red-500'>{errors.age?.message}</p>
                 </div>
 
                 <button type='submit' className='bg-black text-white p-2 rounded-md mt-8'>

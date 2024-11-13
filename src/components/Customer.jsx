@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
 
-function Employee() {
+function Customer() {
   return (
     <div>
       {/* Tab */}
@@ -38,4 +38,4 @@ function Employee() {
   );
 }
 
-export default Employee;
+export default Customer ;
