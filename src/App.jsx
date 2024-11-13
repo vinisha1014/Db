@@ -23,6 +23,8 @@ import CustomerView from "./components/CustomerView";
 import PayrollUpload from "./components/PayrollUpload";
 import PayrollView from "./components/PayrollView";
 import Payroll from "./components/Payroll";
+import EmployeePayrollView from "./components/EmployeePayroll";
+
 
 export const employeeContext = createContext();
 export const departmentContext = createContext();
@@ -98,7 +100,7 @@ function App() {
                                 <Route path="upload" element={<PayrollUpload />} />
                                 <Route path="view" element={<PayrollView />} />
                             </Route>
-
+                            <Route path="payrollview" element={<EmployeePayrollView/>}/>
                         </Route>
                     </Routes>
                 </BrowserRouter>

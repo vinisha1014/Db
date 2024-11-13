@@ -20,6 +20,7 @@ const departmentRoutes = require('./routes/departmentRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 const customerRoutes = require('./routes/customerRoutes');
 const payrollRoutes = require('./routes/payrollRoutes');
+const payrollViewRoutes = require("./routes/payrollViewRoute");
 require('dotenv').config();
 
 app.use(express.json()); // Parse JSON request bodies
@@ -31,6 +32,7 @@ app.use('/api/departments', departmentRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/customers', customerRoutes);
 app.use('/api/payrolls', payrollRoutes);
+app.use('/api/payrollviews', payrollViewRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, async () => {

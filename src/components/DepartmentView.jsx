@@ -103,83 +103,83 @@ function DepartmentView() {
     }
 
     return (
-        <div>
-            <table className='w-full'>
-                <thead>
-                    <tr>
-                        <th className='px-4 py-2 bg-black text-white'>Department ID</th>
-                        <th className='px-4 py-2 bg-black text-white'>Department Name</th>
-                        <th className='px-4 py-2 bg-black text-white'>Department Email</th>
-                        <th className='px-4 py-2 bg-black text-white'>Employee ID</th>
-                        <th className='px-4 py-2 bg-black text-white'>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        departments.map((department) => (
-                            <tr key={department.dep_id}>
-                                {editingDepartmentId === department.dep_id ? (
-                                    <>
-                                        <td className='px-4 py-2 bg-slate-100 text-center'>
-                                            <input
-                                                type="number"
-                                                name="dep_id"
-                                                value={editFormData.dep_id}
-                                                onChange={handleEditChange}
-                                                className='border px-2 py-1'
-                                                disabled
-                                            />
-                                        </td>
-                                        <td className='px-4 py-2 bg-slate-100 text-center'>
-                                            <input
-                                                type="text"
-                                                name="dep_name"
-                                                value={editFormData.dep_name}
-                                                onChange={handleEditChange}
-                                                className='border px-2 py-1'
-                                            />
-                                        </td>
-                                        <td className='px-4 py-2 bg-slate-100 text-center'>
-                                            <input
-                                                type="email"
-                                                name="dep_email"
-                                                value={editFormData.dep_email}
-                                                onChange={handleEditChange}
-                                                className='border px-2 py-1'
-                                            />
-                                        </td>
-                                        <td className='px-4 py-2 bg-slate-100 text-center'>
-                                            <input
-                                                type="number"
-                                                name="emp_id"
-                                                value={editFormData.emp_id}
-                                                onChange={handleEditChange}
-                                                className='border px-2 py-1'
-                                            />
-                                        </td>
-                                        <td className='px-4 py-2 bg-slate-100 text-center'>
-                                            <button onClick={() => handleEditSubmit(department.dep_id)} className='bg-green-500 text-white px-3 py-1.5 rounded-md'>Save</button>
-                                            <button onClick={() => setEditingDepartmentId(null)} className='bg-gray-500 text-white px-3 py-1.5 rounded-md ml-2'>Cancel</button>
-                                        </td>
-                                    </>
-                                ) : (
-                                    <>
-                                        <td className='px-4 py-2 bg-slate-100 text-center'>{department.dep_id}</td>
-                                        <td className='px-4 py-2 bg-slate-100 text-center'>{department.dep_name}</td>
-                                        <td className='px-4 py-2 bg-slate-100 text-center'>{department.dep_email}</td>
-                                        <td className='px-4 py-2 bg-slate-100 text-center'>{department.emp_id}</td>
-                                        <td className='px-4 py-2 bg-slate-100 text-center'>
-                                            <button onClick={() => handleEditClick(department)} className='bg-blue-500 text-white px-3 py-1.5 rounded-md'>Edit</button>
-                                            <button onClick={() => deleteDepartment(department.dep_id)} className='bg-red-500 text-white px-3 py-1.5 rounded-md ml-2'>Delete</button>
-                                        </td>
-                                    </>
-                                )}
-                            </tr>
-                        ))
-                    }
-                </tbody>
-            </table>
-        </div>
+            <div>
+                <table className='w-full'>
+                    <thead>
+                        <tr>
+                            <th className='px-4 py-2 bg-black text-white'>Department ID</th>
+                            <th className='px-4 py-2 bg-black text-white'>Department Name</th>
+                            <th className='px-4 py-2 bg-black text-white'>Department Email</th>
+                            <th className='px-4 py-2 bg-black text-white'>Employee ID</th>
+                            <th className='px-4 py-2 bg-black text-white'>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            departments.map((department) => (
+                                <tr key={department.dep_id}>
+                                    {editingDepartmentId === department.dep_id ? (
+                                        <>
+                                            <td className='px-4 py-2 bg-slate-100 text-center'>
+                                                <input
+                                                    type="number"
+                                                    name="dep_id"
+                                                    value={editFormData.dep_id}
+                                                    onChange={handleEditChange}
+                                                    className='border px-2 py-1'
+                                                    disabled
+                                                />
+                                            </td>
+                                            <td className='px-4 py-2 bg-slate-100 text-center'>
+                                                <input
+                                                    type="text"
+                                                    name="dep_name"
+                                                    value={editFormData.dep_name}
+                                                    onChange={handleEditChange}
+                                                    className='border px-2 py-1'
+                                                />
+                                            </td>
+                                            <td className='px-4 py-2 bg-slate-100 text-center'>
+                                                <input
+                                                    type="email"
+                                                    name="dep_email"
+                                                    value={editFormData.dep_email}
+                                                    onChange={handleEditChange}
+                                                    className='border px-2 py-1'
+                                                />
+                                            </td>
+                                            <td className='px-4 py-2 bg-slate-100 text-center'>
+                                                <input
+                                                    type="number"
+                                                    name="emp_id"
+                                                    value={editFormData.emp_id}
+                                                    onChange={handleEditChange}
+                                                    className='border px-2 py-1'
+                                                />
+                                            </td>
+                                            <td className='px-4 py-2 bg-slate-100 text-center'>
+                                                <button onClick={() => handleEditSubmit(department.dep_id)} className='bg-green-500 text-white px-3 py-1.5 rounded-md'>Save</button>
+                                                <button onClick={() => setEditingDepartmentId(null)} className='bg-gray-500 text-white px-3 py-1.5 rounded-md ml-2'>Cancel</button>
+                                            </td>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <td className='px-4 py-2 bg-slate-100 text-center'>{department.dep_id}</td>
+                                            <td className='px-4 py-2 bg-slate-100 text-center'>{department.dep_name}</td>
+                                            <td className='px-4 py-2 bg-slate-100 text-center'>{department.dep_email}</td>
+                                            <td className='px-4 py-2 bg-slate-100 text-center'>{department.emp_id}</td>
+                                            <td className='px-4 py-2 bg-slate-100 text-center'>
+                                                <button onClick={() => handleEditClick(department)} className='bg-blue-500 text-white px-3 py-1.5 rounded-md'>Edit</button>
+                                                <button onClick={() => deleteDepartment(department.dep_id)} className='bg-red-500 text-white px-3 py-1.5 rounded-md ml-2'>Delete</button>
+                                            </td>
+                                        </>
+                                    )}
+                                </tr>
+                            ))
+                        }
+                    </tbody>
+                </table>
+            </div>
     );
 }
 

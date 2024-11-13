@@ -38,4 +38,4 @@ function Customer() {
   );
 }
 
-export default Customer;
+export default Customer ;
