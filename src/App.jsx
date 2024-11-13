@@ -24,6 +24,7 @@ import PayrollUpload from "./components/PayrollUpload";
 import PayrollView from "./components/PayrollView";
 import Payroll from "./components/Payroll";
 import EmployeePayrollView from "./components/EmployeePayroll";
+import PayrollCalculators from "./components/PayrollCalculator";
 
 
 export const employeeContext = createContext();
@@ -99,6 +100,7 @@ function App() {
                                 <Route index element={<PayrollUpload />} />
                                 <Route path="upload" element={<PayrollUpload />} />
                                 <Route path="view" element={<PayrollView />} />
+                                <Route path="calculator" element={<PayrollCalculators />} />
                             </Route>
                             <Route path="payrollview" element={<EmployeePayrollView/>}/>
                         </Route>
