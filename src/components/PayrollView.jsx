@@ -132,8 +132,8 @@ function PayrollView() {
                                         <input type="number" name="bonus" value={editFormData.bonus} onChange={handleEditChange} />
                                     </td>
                                     <td>
-                                        <button className='bg-blue-500 text-white px-3 py-1.5 rounded-md' onClick={() => handleEditSubmit(payroll.payroll_id)}>Save</button>
-                                        <button className='bg-blue-500 text-white px-3 py-1.5 rounded-md' onClick={() => setEditingPayrollId(null)}>Cancel</button>
+                                        <button className='bg-blue-500  px-3 py-1.5 rounded-md' onClick={() => handleEditSubmit(payroll.payroll_id)}>Save</button>
+                                        <button className='bg-blue-500  px-3 py-1.5 rounded-md' onClick={() => setEditingPayrollId(null)}>Cancel</button>
                                     </td>
                                 </>
                             ) : (
@@ -146,8 +146,8 @@ function PayrollView() {
                                     <td className='px-4 py-2 bg-slate-100 text-center'>{payroll.salary}</td>
                                     <td className='px-4 py-2 bg-slate-100 text-center'>{payroll.bonus}</td>
                                     <td className='px-4 py-2 bg-slate-100 text-center'>
-                                        <button className='bg-green-500 text-white px-3 py-1.5 rounded-md' onClick={() => handleEditClick(payroll)}>Edit</button>
-                                        <button className='bg-gray-500 text-white px-3 py-1.5 rounded-md ml-2' onClick={() => deletePayroll(payroll.payroll_id)}>Delete</button>
+                                        <button className='bg-green-500  px-3 py-1.5 rounded-md' onClick={() => handleEditClick(payroll)}>Edit</button>
+                                        <button className='bg-gray-500  px-3 py-1.5 rounded-md ml-2' onClick={() => deletePayroll(payroll.payroll_id)}>Delete</button>
                                     </td>
                                 </>
                             )}

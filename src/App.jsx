@@ -1,9 +1,9 @@
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { createContext, useState } from "react";
-import Login from "./components/Login";
+
 import Employee from "./components/Employee";
 import DepartmentUpload from "./components/DepartmentUpload";
-import AdminLayout from "./Layout/AdminLayout";
+import AdminLayout from "./LayoutVinisha/AdminLayout";
 import EmployeeUpload from "./components/EmployeeUpload";
 import EmployeeView from "./components/EmployeeView";
 import Supplier from "./components/Supplier";
@@ -25,6 +25,13 @@ import PayrollView from "./components/PayrollView";
 import Payroll from "./components/Payroll";
 import EmployeePayrollView from "./components/EmployeePayroll";
 import PayrollCalculators from "./components/PayrollCalculator";
+import NotFound from './components/molecules/NotFound'
+import Home from './pages/Home';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import Login from "./pages/Login";
+import { Provider } from "react-redux";
+import store from "./config/redux/store";
 
 
 export const employeeContext = createContext();
@@ -47,6 +54,7 @@ function App() {
 
 
     return (
+        <Provider store={store}>
         <payrollContext.Provider value={{ payrolls, setPayrolls }}>
         <customerContext.Provider value={{ customers, setCustomers }}>
         <orderContext.Provider value={{ orders, setOrders }}>
@@ -56,8 +64,18 @@ function App() {
             <departmentContext.Provider value={{ departments, setDepartments }}>
                 <BrowserRouter>
                     <Routes>
-                        <Route path="/login" element={isLoggedIn ? <Navigate to="/" /> : <Login />} />
-                        <Route path="/" element={isLoggedIn ? <AdminLayout /> : <Navigate to="/login" />}>
+                    <Route path='/' element={<Home />} />
+      <Route path='/tentang' element={<About />} />
+      <Route path='/kontak' element={<Contact />} />
+      <Route path='/login' element={ <Login />} />
+
+      {/* Route Not Found 404 */}
+      <Route
+        path="*"
+        element={<NotFound />}
+      />
+                        {/* <Route path="/login" element={isLoggedIn ? <Navigate to="/" /> : <Login />} /> */}
+                        <Route  path="/dashboard" element={<AdminLayout />}>
                             <Route index element={<Navigate to="employee" />} /> {/* Redirect to Employee by default */}
                             <Route path="employee" element={<Employee />}>
                                 <Route index element={<EmployeeUpload />} /> {/* Default to Upload */}
@@ -113,6 +131,7 @@ function App() {
         </orderContext.Provider>
         </customerContext.Provider>
         </payrollContext.Provider>
+        </Provider>
     );
 }
 
