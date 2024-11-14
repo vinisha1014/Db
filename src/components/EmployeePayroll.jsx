@@ -38,11 +38,13 @@ const EmployeePayrollView = () => {
         <thead>
           <tr>
             <th className="px-4 py-2 bg-black text-white">Employee ID</th>
-            <th className="px-4 py-2 bg-black text-white">Employee Name</th>
+            <th className="px-4 py-2 bg-black text-white">Full Name</th>
             <th className="px-4 py-2 bg-black text-white">Payroll ID</th>
             <th className="px-4 py-2 bg-black text-white">Pay Period</th>
-            <th className="px-4 py-2 bg-black text-white">Salary</th>
-            <th className="px-4 py-2 bg-black text-white">Bonus</th>
+            <th className="px-4 py-2 bg-black text-white">Salary (₹)</th>
+            <th className="px-4 py-2 bg-black text-white">Bonus (₹)</th>
+            <th className="px-4 py-2 bg-black text-white">Gross Salary (₹)</th>
+            <th className="px-4 py-2 bg-black text-white">Net Salary (₹)</th>
           </tr>
         </thead>
         <tbody>
@@ -52,8 +54,10 @@ const EmployeePayrollView = () => {
               <td className="px-4 py-2 text-center border">{item.full_name}</td>
               <td className="px-4 py-2 text-center border">{item.payroll_id}</td>
               <td className="px-4 py-2 text-center border">{item.pay_period}</td>
-              <td className="px-4 py-2 text-center border">{item.salary}</td>
-              <td className="px-4 py-2 text-center border">{item.bonus}</td>
+              <td className="px-4 py-2 text-center border">{Number.parseFloat(item.salary).toFixed(2)}</td>
+              <td className="px-4 py-2 text-center border">{Number.parseFloat(item.bonus).toFixed(2)}</td>
+              <td className="px-4 py-2 text-center border">{Number.parseFloat(item.gross_salary).toFixed(2)}</td>
+              <td className="px-4 py-2 text-center border">{Number.parseFloat(item.net_salary).toFixed(2)}</td>
             </tr>
           ))}
         </tbody>

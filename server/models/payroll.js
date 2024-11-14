@@ -1,4 +1,5 @@
 'use strict';
+
 module.exports = (sequelize, DataTypes) => {
     const Payroll = sequelize.define('Payroll', {
         payroll_id: {
@@ -26,10 +27,18 @@ module.exports = (sequelize, DataTypes) => {
         bonus: {
             type: DataTypes.DECIMAL(10, 2),
             defaultValue: 200
+        },
+        net_salary: {
+            type: DataTypes.DECIMAL(10, 2),
+            allowNull: true
+        },
+        gross_salary: {
+            type: DataTypes.DECIMAL(10, 2),
+            allowNull: true
         }
     }, {
         tableName: 'Payroll',
-        timestamps: true
+        timestamps: false
     });
 
     Payroll.associate = (models) => {
@@ -38,6 +47,16 @@ module.exports = (sequelize, DataTypes) => {
             as: 'employee'
         });
     };
+
+    Payroll.beforeCreate((payroll) => {
+        payroll.net_salary = payroll.salary - (payroll.salary * 0.1); // Example tax deduction of 10%
+        payroll.gross_salary = payroll.salary + payroll.bonus;
+    });
+
+    Payroll.beforeUpdate((payroll) => {
+        payroll.net_salary = payroll.salary - (payroll.salary * 0.1); // Example tax deduction of 10%
+        payroll.gross_salary = payroll.salary + payroll.bonus;
+    });
 
     return Payroll;
 };

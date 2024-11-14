@@ -26,6 +26,17 @@ function Payroll() {
         >
           View
         </NavLink>
+        <NavLink
+          to="calculator"  // Relative path for nested routing
+          className={({ isActive }) =>
+            `inline-flex justify-center items-center px-4 py-2 rounded-lg ${
+              isActive ? "bg-black text-white" : "bg-slate-100 hover:bg-black hover:text-white"
+            }`
+          }
+        >
+          Calculator
+        </NavLink>
+        
       </div>
       {/* Tab */}
 
